@@ -1,3 +1,4 @@
+<?php include './php/page_config.php' ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,9 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
 </head>
 <body>
-<?php
-    include './html/header.php';
-    ?>
+<?php include './html/header.php'; ?>
     <main class="main-content">
     <section id="secao1">
     <div class="logo-container">

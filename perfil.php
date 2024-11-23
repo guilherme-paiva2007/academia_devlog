@@ -1,3 +1,10 @@
+<?php include './php/page_config.php';
+
+if(!isset($_SESSION['logged']) && $_SESSION['logged'] !== true){
+    header('Location: ' . createLink('login'));
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,6 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Reem+Kufi:wght@400..700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <?php include './html/head.php' ?>
 </head>
 <body>
 <?php
@@ -32,17 +40,23 @@
             <div class='info'>
                 <div class='nome-email'>
                     <p class="nome-acima" >NOME</p>
-                    <p >info</p>
+                    <p ><?php echo $_SESSION['user_name'] ?></p>
                     <p class='nome-acima'>EMAIL</p>
-                    <p >info</p>
-                    <p class='nome-acima'>SENHA</p>
-                    <p >info</p>
+                    <p ><?php echo $_SESSION['user_email'] ?></p>
                     <p class='nome-acima'>NASCIMENTO</p>
-                    <p >info</p>
+                    <p ><?php echo $_SESSION['user_nascimento'] ?></p>
                     <p class='nome-acima'>TELEFONE</p>
-                    <p >info</p>
+                    <p ><?php echo $_SESSION['user_tel'] ?></p>
                     <p class='nome-acima'>NIVEL</p>
-                    <p >info</p>
+                    <p ><?php echo levelAlias($_SESSION['user_level']) ?></p>
+                    <?php
+                    if (levelNum($_SESSION['user_level']) > 1) {
+                        echo "<p class='nome-acima'>FERRAMENTAS</p>";
+                        $link = createLink('ferramentas');
+                        echo "<p ><a href='$link'>Ferramentas</a></p>";
+                    }
+                    ?>
+                    <button style="background-color: var(--red);" onclick = "location.href = dirbase + 'php/logout.php'">Sair</button>
                     </div>
                 </div>
             </div>

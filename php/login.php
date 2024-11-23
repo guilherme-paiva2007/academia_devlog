@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_name'] = $user['nome'];
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_level'] = $user['nivel'];
+        $_SESSION['user_tel'] = $user['tel'];
+        $_SESSION['user_nascimento'] = $user['nascimento'];
         header('Location: ' . createLink('inicio'));
         exit();
     } else {

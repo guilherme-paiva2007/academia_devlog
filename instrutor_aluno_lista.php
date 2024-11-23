@@ -1,3 +1,4 @@
+<?php include './php/page_config.php' ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

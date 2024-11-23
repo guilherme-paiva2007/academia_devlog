@@ -6,3 +6,9 @@ Caso seja exportado num diretório com nome diferente, deve alterar o nome em ph
 
 Necessário login para utilizar as funcionalidades além da página inicio
 
+Não é possível adicionar administradores
+Login do único perfil administrador:
+    email: liliv@liliv
+    senha: 1111
+
+Quando logado com um perfil com funcionalidades de controle, será incluido a opção ferramentas no perfil, listando as ferramentas implementadas

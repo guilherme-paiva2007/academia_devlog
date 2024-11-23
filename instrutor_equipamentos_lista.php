@@ -1,3 +1,14 @@
+<?php include './php/page_config.php'
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== true) {
+    header('Location: ' . createLink('login'));
+    exit();
+}
+
+if (levelNum($_SESSION['user_level']) < 2) {
+    header('Location: ' . createLink('inicio'));
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

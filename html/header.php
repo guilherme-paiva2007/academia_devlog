@@ -3,9 +3,15 @@
             <a href="index.php" id="box-img"><img class= "logo" src="img/logo.png" alt="logo"></li></a>
             <nav>
             <ul id="nav1">
-                    <li><h3><a id="inicio" href="./index.php">início</a></h3></li>
-                    <li><h3><a href="./login.php">login</a></h3></li>
-                    <li><h3><a href="./perfil.php">perfil</a></h3></li>
+            <li><h3><a id="inicio" href="<?php echo createLink('inicio') ?>">início</a></h3></li>
+                    <?php if (!isset($_SESSION['user_id'])) {
+                        $link = createLink('login');
+                        echo "<li><h3><a href=\"$link\">Entrar</a></h3></li>";
+                    } else {
+                        $link = createLink('perfil');
+                        echo "<li><h3><a href=\"$link\">Perfil</a></h3></li>";
+                    } ?>
+                    <li><h3><a href="<?php createLink('planos/lista') ?>">Planos</a></h3></li>
                 </ul>
                 <div id="user-div">
                    
@@ -13,9 +19,12 @@
                 <input type="checkbox" id="checkbox">
                 <label for="checkbox" id="botao">☰</label>
                 <ul id="nav2">
-                    <li><h3><a id="inicio" href="./index.php">início</a></h3></li>
-                    <li><h3><a href="./login.php">login</a></h3></li>
-                    <li><h3><a href="./perfil.php">perfil</a></h3></li>
+                    <li><h3><a id="inicio" href="<?php echo createLink('inicio') ?>">início</a></h3></li>
+                    <?php if (!isset($_SESSION['user_id'])) {
+                        echo "<li><h3><a href=\"<?= createLink('login') ?>\">Entrar</a></h3></li>";
+                    } else {
+                        echo "<li><h3><a href=\"<?= createLink('perfil') ?>\">Perfil</a></h3></li>";
+                    } ?>
                 </ul>
             </nav>
         </div>
