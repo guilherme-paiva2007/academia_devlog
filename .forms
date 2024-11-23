@@ -10,6 +10,18 @@ instrutor_aluno_editar (NENHUM REQUIRED)
     nome
     telefone
     data_nascimento
+// verificar se está vazio para não editar
 
 instrutor_equipamento_novo
-    
+    nome
+    descricao
+
+instrutor_equipamento_editar (NENHUM REQUIRED)
+    nome
+    descricao
+// verificar se está vazio para não editar
+
+instrutor_equipamento_remover
+    (só confirmação)
+
+instrutor_exercicios
