@@ -1,0 +1,15 @@
+instrutor_aluno_cadastrar
+    nome
+    email
+    senha - PASSWORD
+    telefone
+    confirmar_senha - PASSWORD
+    data_nascimento - DATE
+
+instrutor_aluno_editar (NENHUM REQUIRED)
+    nome
+    telefone
+    data_nascimento
+
+instrutor_equipamento_novo
+    

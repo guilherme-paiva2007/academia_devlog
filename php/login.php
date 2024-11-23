@@ -27,8 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['logged'] = true;
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['user_name'] = $user['nome'];
+        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_level'] = $user['nivel'];
         header('Location: ' . createLink('inicio'));
+        exit();
+    } else {
+        header('Location: ' . createLink('login?error=invalidpassword'));
         exit();
     }
 }

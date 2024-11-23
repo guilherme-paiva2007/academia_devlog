@@ -547,3 +547,14 @@ class DynamicSearch {
         return search;
     }
 }
+
+class ProcessResult {
+    constructor(result, callback = (result) => {}) {
+        if (typeof result == "string") {
+            callback(result)
+        }
+        if (result instanceof Promise) {
+            result.then(callback);
+        }
+    }
+}

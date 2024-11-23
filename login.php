@@ -10,7 +10,7 @@
     <body class="center">
         <section class="login-container">
             <h2 class="center">Login</h2>
-            <form action="<?= createLink('index.php') ?>" method="post">
+            <form action="<?= createLink('index.php') ?>" method="post" id="form-login">
                 <label for="login-input-email" class="indent">Email</label>
                 <input type="email" id="login-input-email" name="email" required>
                 <label for="login-input-password" class="indent">Senha</label>
