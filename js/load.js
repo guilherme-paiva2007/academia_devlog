@@ -1,0 +1,1 @@
+HTML.classList.add('lightTheme')
