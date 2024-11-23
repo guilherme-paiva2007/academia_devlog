@@ -12,3 +12,5 @@ Login do único perfil administrador:
     senha: 1111
 
 Quando logado com um perfil com funcionalidades de controle, será incluido a opção ferramentas no perfil, listando as ferramentas implementadas
+
+LINK VIDEO PITCH MODULO C: https://youtu.be/zXjYHoe25f8
