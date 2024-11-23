@@ -1,6 +1,12 @@
 <?php
+session_start();
 include 'db.php';
 include 'script.php';
+
+if (levelNum($_SESSION['user_level']) < 2) {
+    echo "unauthorized";
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');

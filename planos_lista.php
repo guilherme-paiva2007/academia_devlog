@@ -1,3 +1,17 @@
+<?php
+include './php/page_config.php';
+include './php/db.php';
+
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] !== true) {
+    header('Location: ' . createLink('login'));
+    exit();
+}
+
+if (levelNum($_SESSION['user_level']) < 1) {
+    header('Location: ' . createLink('inicio'));
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,88 +33,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
 </head>
 <body>
-    <header id="header">
-        <div id="container">
-            <a href="index.php" id="box-img"><img class= "logo" src="img/logo.png" alt="logo"></li></a>
-            <nav>
-            <ul id="nav1">
-                    <li><h3><a id="inicio" href="./index.php">início</a></h3></li>
-                    <li><h3><a href="./login.php">login</a></h3></li>
-                    <li><h3><a href="./perfil.php">perfil</a></h3></li>
-                </ul>
-                <div id="user-div">
-                   
-                </div>
-                <input type="checkbox" id="checkbox">
-                <label for="checkbox" id="botao">☰</label>
-                <ul id="nav2">
-                    <li><h3><a id="inicio" href="./index.php">início</a></h3></li>
-                    <li><h3><a href="./login.php">login</a></h3></li>
-                    <li><h3><a href="./perfil.php">perfil</a></h3></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include './html/header.php' ?>
     <main class="main-content">
 
 
     <div class="container">
   <ul class="responsive-table">
     <li class="table-header">
-      <div class="col col-1">1</div>
-      <div class="col col-2">2</div>
-      <div class="col col-3">3</div>
-      <div class="col col-4">4</div>
+      <div class="col col-1">Plano</div>
+      <div class="col col-2">Descrição</div>
     </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">info 1</div>
-      <div class="col col-2" data-label="Customer Name">info 2</div>
-      <div class="col col-3" data-label="Amount">info 3</div>
-      <div class="col col-4" data-label="Payment Status">info 4</div>
-    </li>
-    <li class="table-row">
-    <div class="col col-1" data-label="Job Id">info 1</div>
-      <div class="col col-2" data-label="Customer Name">info 2</div>
-      <div class="col col-3" data-label="Amount">info 3</div>
-      <div class="col col-4" data-label="Payment Status">info 4</div
-    </li>
-    <li class="table-row">
-    <div class="col col-1" data-label="Job Id">info 1</div>
-      <div class="col col-2" data-label="Customer Name">info 2</div>
-      <div class="col col-3" data-label="Amount">info 3</div>
-      <div class="col col-4" data-label="Payment Status">info 4</div
-    </li>
-    <li class="table-row">
-    <div class="col col-1" data-label="Job Id">info 1</div>
-      <div class="col col-2" data-label="Customer Name">info 2</div>
-      <div class="col col-3" data-label="Amount">info 3</div>
-      <div class="col col-4" data-label="Payment Status">info 4</div
-    </li>
+    <?php
+    $sql = "SELECT * FROM planos WHERE id_aluno = ?";
+    $statement = $connection->prepare($sql);
+    $statement->execute([$_SESSION['user_id']]);
+    $planos = $statement->get_result();
+
+    while ($plano = $planos->fetch_assoc()) {
+        echo '<li class="table-row">';
+        echo '<div class="col col-1" data-label="Nome do Plano">' . $plano['nome'] . '</div>';
+        echo '<div class="col col-2" data-label="Descrição do Plano">' . $plano['descricao'] . '</div>';
+        echo '</li>';
+    }
+    ?>
   </ul>
 </div>
 
 
     </section>
-    <footer>
-            <div id="footer">
-        
-                <div class="contato">
-                    <h2>Informações de Contato</h2>
-                    <p>Endereço: Av. Alegria, 100, Caçapava - SP, 12745-160</p>
-                    <p>Telefone: (12) 3653-1943</p>
-                    <p>E-mail: contato@sesi-senai.com.br</p>
-            
-                </div> 
-            
-                <div class="equipe">
-                    <h2>Equipe Desenvolvedora</h2>
-                        <p>Ana Lívia</p>
-                        <p>Gabriel Reis</p>
-                        <p>Guilherme Paiva</p>
-                </div>
-                </div>
-            </div>
-        </footer> 
+    <?php include './html/footer.php' ?> 
 </main>
 </body>
 <style>
@@ -290,7 +251,7 @@ a:hover{
     flex-basis: 10%;
   }
   .col-2 {
-    flex-basis: 40%;
+    flex-basis: 80%;
   }
   .col-3 {
     flex-basis: 25%;
